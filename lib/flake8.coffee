@@ -23,7 +23,11 @@ validate = ->
     else
       lines = []
       for error in errors
-        msgPanel.append.lineMessage(error.line, error.position, error.message, error.evidence, 'text-error')
+        if error.type
+          message = error.type + " " + error.message
+        else
+          message = error.message
+        msgPanel.append.lineMessage(error.line, error.position, message, error.evidence, 'text-error')
         lines.push(error.line)
       msgPanel.append.lineIndicators(lines, 'text-error');
 
