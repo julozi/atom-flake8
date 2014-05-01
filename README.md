@@ -1,4 +1,4 @@
-# flake8
+# flake8 atom package
 
 flake8 is an atom package that let you run flake8 on your current Python file.
 
