@@ -2,7 +2,7 @@
   "name": "flake8",
   "main": "./lib/flake8",
   "version": "0.1.0",
-  "description": "Flake8 wrapper for atom editor",
+  "description": "Flake8 validation for Atom",
   "repository": "https://github.com/julozi/atom-flake8",
   "license": "MIT",
   "engines": {
