@@ -85,6 +85,14 @@ flake = (filePath, callback) ->
 
   # Watch for the exit code
   proc.on 'exit', (exit_code, signal) ->
+      if exit_code != 1
+        errors = []
+        errors.push {
+          "message": "flake8 is crashing, please check flake8 bin path or reinstall flake8",
+          "evidence": flake8Path,
+          "position": 1,
+          "line": 1
+        }
       callback errors
 
 
