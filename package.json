@@ -1,7 +1,7 @@
 {
   "name": "flake8",
   "main": "./lib/flake8",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Flake8 validation for Atom",
   "repository": "https://github.com/julozi/atom-flake8",
   "license": "MIT",
