@@ -37,13 +37,14 @@ validate = ->
 
 
 flake = (filePath, callback) ->
-  line_expr = /:(\d+):(\d+): ([EF]\d{3}) (.*)/
+  line_expr = /:(\d+):(\d+): ([CEF]\d{3}) (.*)/
   errors = []
   currentIndex = -1
   skipLine = false
 
   params = ["--show-source", filePath]
   ignoreErrors = atom.config.get "flake8.ignoreErrors"
+  mcCabeComplexityThreshold = atom.config.get "flake8.mcCabeComplexityThreshold"
   flake8Path = atom.config.get "flake8.flake8Path"
 
   if not fs.existsSync(flake8Path)
@@ -58,6 +59,9 @@ flake = (filePath, callback) ->
 
   if not not ignoreErrors
     params.push("--ignore=#{ ignoreErrors }")
+
+  if not not mcCabeComplexityThreshold
+    params.push("--max-complexity=#{ mcCabeComplexityThreshold }")
 
   proc = process.spawn flake8Path, params
 
@@ -86,7 +90,6 @@ flake = (filePath, callback) ->
   # Watch for the exit code
   proc.on 'exit', (exit_code, signal) ->
       if exit_code == 1 and errors.length == 0
-        errors = []
         errors.push {
           "message": "flake8 is crashing, please check flake8 bin path or reinstall flake8",
           "evidence": flake8Path,
@@ -102,6 +105,7 @@ module.exports =
   configDefaults:
     flake8Path: "/usr/local/bin/flake8"
     ignoreErrors: ""
+    mcCabeComplexityThreshold: ""
     validateOnSave: true
 
   activate: (state) ->
