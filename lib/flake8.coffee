@@ -37,7 +37,7 @@ validate = ->
 
 
 flake = (filePath, callback) ->
-  line_expr = /:(\d+):(\d+): ([CEF]\d{3}) (.*)/
+  line_expr = /:(\d+):(\d+): ([CEFW]\d{3}) (.*)/
   errors = []
   currentIndex = -1
   skipLine = false
