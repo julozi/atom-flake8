@@ -20,6 +20,7 @@ For more information about flake8 see [the official documentation page](http://f
 - Flake8 path : path of the flake8 binary (defaults to /usr/local/bin/flake8)
 - Ignore errors : a comma separated list of ignored errors (this setting is passed to the --ignore flake8 command line option)
 - McCabe complexity threshold : max complexity of the script
+- Use Fold Mode as Default : fold the message panel by default
 - Validate on save : trigger flake8 validation automatically when a Python file is saved
 
 ## Licence
