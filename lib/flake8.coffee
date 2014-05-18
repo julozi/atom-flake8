@@ -14,6 +14,9 @@ validate = ->
 
     if atom.workspaceView.find('.am-panel').length != 1
       msgPanel.init('<span class="icon-bug"></span> Flake8 report')
+      atom.config.observe 'flake8.useFoldModeAsDefault', {callNow: true}, (value) ->
+        if value == true
+          msgPanel.fold(0);
     else
       msgPanel.clear()
 
@@ -106,12 +109,12 @@ module.exports =
     flake8Path: "/usr/local/bin/flake8"
     ignoreErrors: ""
     mcCabeComplexityThreshold: ""
+    useFoldModeAsDefault: false
     validateOnSave: true
 
   activate: (state) ->
     atom.workspaceView.command "flake8:run", => @run()
 
-    #atom.workspaceView.command 'core:save', => @run()
     atom.config.observe 'flake8.validateOnSave', {callNow: true}, (value) ->
       if value == true
         atom.workspace.eachEditor (editor) ->
